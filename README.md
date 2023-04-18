@@ -4,7 +4,7 @@ Microbial organisms have run out of life-sustaining energy on the planet's surfa
 # To Do
 - Add documentation for:
     - ~~Basic gameplay loop.~~
-    - Units and structures.
+    - ~~Units and structures.~~
     - Mechanics.
     - Environment.
     - ~~Controls.~~
