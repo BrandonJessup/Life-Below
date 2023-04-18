@@ -1,8 +1,6 @@
 # Life Below
 Life below is a light RTS game set in underground caves.
 
----
-
 # To Do
 - Add documentation for:
     - Basic gameplay loop.
