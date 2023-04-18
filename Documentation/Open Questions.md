@@ -21,3 +21,10 @@ Things about the design of the game that do not have a clear answer yet.
 - What is the behavior of enemy units while not aggroed by the player?
     - Do they gradually creep towards the enemy base?
     - Do they move around randomly?
+- How does the player combat unit attack?
+    - Range or melee?
+    - Fast or slow?
+- What will the workers do while sitting in base?
+    - Maybe workers will gather small amounts of energy while they sit in base.
+        - This amount of energy wouldn't be nearly enough to be sustainable on its own, but in some cases it would help to push the player's energy over the hump to the next energy checkpoint.
+        - They would sort of scuttle around in the player's base digging up the microbial equivalent of grubs out of the ground.
