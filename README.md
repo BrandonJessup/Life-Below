@@ -7,7 +7,7 @@ Microbial organisms have run out of life-sustaining energy on the planet's surfa
     - Units and structures.
     - Mechanics.
     - Environment.
-    - Controls.
+    - ~~Controls.~~
 - Create map editor for artist to play around with.
 - Import visual assets for prototype.
     - Weak enemy.
