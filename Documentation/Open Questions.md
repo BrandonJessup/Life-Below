@@ -11,13 +11,13 @@ Things about the design of the game that do not have a clear answer yet.
     - Where do workers come from?
     - Where do military units come from?
     - Idea:
-        - The player is given a choice of units/structures each time they reach an energy checkpoint.
+        - The player is given a choice of units/structures each time they reach an energy threshold.
         - Examples of things offered might be:
             - 1 worker or 1 combat unit.
             - 1 combat unit or 1 defensive structure.
             - 1 wall or 1 defensive structure.
-        - Energy checkpoints would be at some arbitrary amount representing a percentage of the energy required to complete the mission. 
-        - This design would mean that the player would no longer be able to pay for units and structures, and would only be able to obtain units and structures offered to them by the energy checkpoints.
+        - Energy thresholds would be at some arbitrary amount representing a percentage of the energy required to complete the mission. 
+        - This design would mean that the player would no longer be able to pay for units and structures, and would only be able to obtain units and structures offered to them by the energy thresholds.
 - What is the behavior of enemy units while not aggroed by the player?
     - Do they gradually creep towards the enemy base?
     - Do they move around randomly?
@@ -26,5 +26,5 @@ Things about the design of the game that do not have a clear answer yet.
     - Fast or slow?
 - What will the workers do while sitting in base?
     - Maybe workers will gather small amounts of energy while they sit in base.
-        - This amount of energy wouldn't be nearly enough to be sustainable on its own, but in some cases it would help to push the player's energy over the hump to the next energy checkpoint.
+        - This amount of energy wouldn't be nearly enough to be sustainable on its own, but in some cases it would help to push the player's energy over the hump to the next energy threshold.
         - They would sort of scuttle around in the player's base digging up the microbial equivalent of grubs out of the ground.
