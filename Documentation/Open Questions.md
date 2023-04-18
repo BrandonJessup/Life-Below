@@ -1,0 +1,23 @@
+# Open Questions
+Things about the design of the game that do not have a clear answer yet.
+- How do enemies spawn?
+    - Does the map randomly get filled with them at game start?
+    - Do more enemies spawn as time goes on?
+    - Do waves ever spawn that run at the player's base?
+- What does the player start with when the game begins?
+    - How many workers?
+    - How many combat units?
+- How does the player spawn more units?
+    - Where do workers come from?
+    - Where do military units come from?
+    - Idea:
+        - The player is given a choice of units/structures each time they reach an energy checkpoint.
+        - Examples of things offered might be:
+            - 1 worker or 1 combat unit.
+            - 1 combat unit or 1 defensive structure.
+            - 1 wall or 1 defensive structure.
+        - Energy checkpoints would be at some arbitrary amount representing a percentage of the energy required to complete the mission. 
+        - This design would mean that the player would no longer be able to pay for units and structures, and would only be able to obtain units and structures offered to them by the energy checkpoints.
+- What is the behavior of enemy units while not aggroed by the player?
+    - Do they gradually creep towards the enemy base?
+    - Do they move around randomly?
