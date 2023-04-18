@@ -4,7 +4,7 @@ Life below is a light RTS game set in underground caves.
 ---
 
 # To Do
-- Write a description of:
+- Add documentation for:
     - Basic gameplay loop.
     - Units and structures.
     - Mechanics.
