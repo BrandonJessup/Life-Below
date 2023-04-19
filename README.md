@@ -3,8 +3,6 @@ Microbial organisms have run out of life-sustaining energy on the planet's surfa
 
 # To Do
 - Add additional documentation for:
-    - Mechanics:
-        - Energy Thresholds.
     - Environment:
         - Cave Layout.
         - Player Starting Area.

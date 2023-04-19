@@ -10,7 +10,12 @@ Energy can be obtained from the following sources:
 - Veins of moss can be found growing along the walls of the caves, which can be mined by the workers who will convert it into energy.
 
 ## Energy Thresholds
-**TODO**
+When the player's total collected energy reaches certain thresholds, they will be provided with a choice of what unit or structure they would like to obtain. These thresholds would be a percentage of the total energy required to obtain victory in the level. This is the players only means of obtaining more units or structures.
+
+Examples of choices offered to the player at an energy threshold might be:
+- 1 worker or 1 combat unit.
+- 1 combat unit or 1 defensive tower.
+- 1 wall or 1 defensive tower.
 
 # Enemy Behaviors
 - When a player unit comes into aggro range of an enemy unit, the enemy will chase the player units until they leave the aggro range again.
