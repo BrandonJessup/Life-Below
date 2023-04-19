@@ -4,9 +4,6 @@ Things about the design of the game that do not have a clear answer yet.
     - Does the map randomly get filled with them at game start?
     - Do more enemies spawn as time goes on?
     - Do waves ever spawn that run at the player's base?
-- What does the player start with when the game begins?
-    - How many workers?
-    - How many combat units?
 - What is the behavior of enemy units while not aggroed by the player?
     - Do they gradually creep towards the enemy base?
     - Do they move around randomly?
