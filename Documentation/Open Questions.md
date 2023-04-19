@@ -14,3 +14,4 @@ Things about the design of the game that do not have a clear answer yet.
     - Maybe workers will gather small amounts of energy while they sit in base.
         - This amount of energy wouldn't be nearly enough to be sustainable on its own, but in some cases it would help to push the player's energy over the hump to the next energy threshold.
         - They would sort of scuttle around in the player's base digging up the microbial equivalent of grubs out of the ground.
+- Should the player's starting area have any paths out of it, or should the clearing they start in require the player to dig outward to find another open area of the cave?
