@@ -1,8 +1,11 @@
 #include <SFML/Graphics.hpp>
 
+#include "window.h"
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "Life Below");
+    Window window;
+    
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -11,11 +14,10 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
+            window.handleEvent(event);
         }
+
+        window.frameLogic();
 
         window.clear();
         window.draw(shape);

@@ -1,7 +1,7 @@
 # Replace with location of SFML on your machine.
 SFML = C:/Libraries/C++/SFML-2.5.1
 
-OBJECTS = LifeBelow.o
+OBJECTS = LifeBelow.o Window.o
 
 PROGRAM_NAME = "Life Below.exe"
 
@@ -24,8 +24,11 @@ LIBRARIES += -static -lwinpthread
 program : $(OBJECTS)
 	g++ -o $(PROGRAM_NAME) $(INCLUDE) $(OBJECTS) $(LIBRARIES)
 
-LifeBelow.o : src/LifeBelow.cpp
+LifeBelow.o : src/LifeBelow.cpp src/Window.h src/Globals.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/LifeBelow.cpp
+
+Window.o : src/Window.h src/Window.cpp src/Globals.h
+	g++ -c -DSFML_STATIC $(INCLUDE) src/Window.cpp
 
 clean :
 	del $(PROGRAM_NAME) $(OBJECTS)
