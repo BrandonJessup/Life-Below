@@ -4,7 +4,7 @@
 namespace globals
 {
     const int EDGE_PAN_REGION_THICKNESS = 4;
-    const int EDGE_PAN_SPEED = 200; // In pixels per second.
+    const int EDGE_PAN_SPEED = 600; // In pixels per second.
 }
 
 #endif // GLOBALS_H
