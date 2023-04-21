@@ -1,13 +1,20 @@
 #include <SFML/Graphics.hpp>
 
+#include <iostream>
+
 #include "window.h"
 
 int main()
 {
     Window window;
-    
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+
+    sf::Texture texture;
+    if (!texture.loadFromFile("assets/enemy weak.png"))
+    {
+        return 0;
+    }
+    sf::Sprite sprite;
+    sprite.setTexture(texture);
 
     while (window.isOpen())
     {
@@ -20,7 +27,7 @@ int main()
         window.frameLogic();
 
         window.clear();
-        window.draw(shape);
+        window.draw(sprite);
         window.display();
     }
 
