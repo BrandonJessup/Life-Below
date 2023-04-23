@@ -1,4 +1,4 @@
-#include "window.h"
+#include "Window.h"
 
 #include <SFML/Graphics.hpp>
 
