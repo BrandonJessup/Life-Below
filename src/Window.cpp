@@ -8,8 +8,12 @@ Window::Window()
 {
     initializeCursors();
 
-    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-    create(sf::VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel), "Life Below", sf::Style::Fullscreen);
+    // // Fullscreen
+    // sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+    // create(sf::VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel), "Life Below", sf::Style::Fullscreen);
+    
+    // Windowed
+    create(sf::VideoMode(800, 800), "Life Below", sf::Style::Close);
     
     setMouseCursorGrabbed(true);
 
