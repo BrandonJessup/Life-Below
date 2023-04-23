@@ -15,6 +15,7 @@ int main()
     }
     sf::Sprite sprite;
     sprite.setTexture(texture);
+    sprite.setPosition((400 - texture.getSize().x) / 2, (400 - texture.getSize().y) / 2);
 
     while (window.isOpen())
     {
