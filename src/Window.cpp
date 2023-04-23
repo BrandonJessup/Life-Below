@@ -71,7 +71,7 @@ void Window::handleEvent(sf::Event& event)
             close();
         }
         // Move view back to starting position.
-        else if (event.key.code == sf::Keyboard::Space)
+        else if (event.key.code == sf::Keyboard::Enter)
         {
             sf::View view = getView();
             view.setCenter(400 / 2, 400 / 2);
