@@ -63,12 +63,19 @@ void Window::handleEvent(sf::Event& event)
             setCursorToDefault();
         }
     }
-    // Temporary until some kind of menu is created for closing the game.
+    // TEMP: Development hotkeys.
     else if (event.type == sf::Event::KeyPressed)
     {
         if (event.key.code == sf::Keyboard::Escape)
         {
             close();
+        }
+        // Move view back to starting position.
+        else if (event.key.code == sf::Keyboard::Space)
+        {
+            sf::View view = getView();
+            view.setCenter(400 / 2, 400 / 2);
+            setView(view);
         }
     }
 }
