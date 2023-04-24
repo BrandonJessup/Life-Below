@@ -83,7 +83,7 @@ void Window::handleEvent(sf::Event& event)
         else if (event.key.code == sf::Keyboard::Enter)
         {
             sf::View view = getView();
-            view.setCenter(400 / 2, 400 / 2);
+            view.setCenter(global::WINDOW_NATIVE_RESOLUTION_X / 2, global::WINDOW_NATIVE_RESOLUTION_Y / 2);
             setView(view);
         }
         else if (event.key.code == sf::Keyboard::Up)
