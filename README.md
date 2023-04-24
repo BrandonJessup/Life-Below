@@ -2,7 +2,6 @@
 Microbial organisms have run out of life-sustaining energy on the planet's surface, and now must search downwards if they hope to survive. Your host organism has run out of energy trying to dig deep, and you must gather whatever energy-providing resources you can from the cave system you have broken into, so that you can continue your journey downward, in search of a better life below.
 
 # To Do
-- Add scaling system for game window's resolution.
 - Add ability to write dev messages to the screen.
     - These messages will appear for a brief moment after a dev command has been entered, such as changing the scaling level.
 - Add additional documentation for:
