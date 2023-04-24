@@ -27,8 +27,7 @@ Window::Window()
 void Window::onResize()
 {
     sf::View view = getView();
-    sf::Vector2u newSize = getSize();
-    view.setSize(newSize.x, newSize.y);
+    view.setSize(globals::WINDOW_NATIVE_RESOLUTION_X, globals::WINDOW_NATIVE_RESOLUTION_Y);
     setView(view);
 }
 
