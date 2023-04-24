@@ -88,6 +88,7 @@ void Window::handleEvent(sf::Event& event)
             {
                 globals::scale = globals::WINDOW_SCALING_MAX;
             }
+            updateWindowSize(globals::scale);
             std::cout << "Scale: " << globals::scale << std::endl;
         }
         else if (event.key.code == sf::Keyboard::Down)
@@ -97,6 +98,7 @@ void Window::handleEvent(sf::Event& event)
             {
                 globals::scale = globals::WINDOW_SCALING_MIN;
             }
+            updateWindowSize(globals::scale);
             std::cout << "Scale: " << globals::scale << std::endl;
         }
     }
@@ -257,4 +259,10 @@ void Window::setMouseCursorGrabbed(bool grab)
 {
     sf::RenderWindow::setMouseCursorGrabbed(grab);
     _cursorIsGrabbed = grab;
+}
+
+void Window::updateWindowSize(const int& scale)
+{
+    setSize(sf::Vector2u(globals::WINDOW_NATIVE_RESOLUTION_X * globals::scale, globals::WINDOW_NATIVE_RESOLUTION_Y * globals::scale));
+
 }
