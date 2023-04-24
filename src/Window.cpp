@@ -13,7 +13,7 @@ Window::Window()
     // create(sf::VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel), "Life Below", sf::Style::Fullscreen);
     
     // Windowed
-    create(sf::VideoMode(400, 400), "Life Below", sf::Style::Close);
+    create(sf::VideoMode(globals::WINDOW_NATIVE_RESOLUTION_X * globals::scale, globals::WINDOW_NATIVE_RESOLUTION_Y * globals::scale), "Life Below", sf::Style::Close);
     
     setMouseCursorGrabbed(true);
 
@@ -76,6 +76,24 @@ void Window::handleEvent(sf::Event& event)
             sf::View view = getView();
             view.setCenter(400 / 2, 400 / 2);
             setView(view);
+        }
+        else if (event.key.code == sf::Keyboard::Up)
+        {
+            ++globals::scale;
+            if (globals::scale > globals::WINDOW_SCALING_MAX)
+            {
+                globals::scale = globals::WINDOW_SCALING_MAX;
+            }
+            std::cout << "Scale: " << globals::scale << std::endl;
+        }
+        else if (event.key.code == sf::Keyboard::Down)
+        {
+            --globals::scale;
+            if (globals::scale < globals::WINDOW_SCALING_MIN)
+            {
+                globals::scale = globals::WINDOW_SCALING_MIN;
+            }
+            std::cout << "Scale: " << globals::scale << std::endl;
         }
     }
 }
