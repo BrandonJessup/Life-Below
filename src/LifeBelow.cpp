@@ -2,7 +2,8 @@
 
 #include <iostream>
 
-#include "window.h"
+#include "Window.h"
+#include "Globals.h"
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
     }
     sf::Sprite sprite;
     sprite.setTexture(texture);
-    sprite.setPosition((400 - texture.getSize().x) / 2, (400 - texture.getSize().y) / 2);
+    sprite.setPosition((globals::WINDOW_NATIVE_RESOLUTION_X - texture.getSize().x) / 2, (globals::WINDOW_NATIVE_RESOLUTION_Y - texture.getSize().y) / 2);
 
     while (window.isOpen())
     {

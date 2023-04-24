@@ -15,7 +15,8 @@ Window::Window()
     // create(sf::VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel), "Life Below", sf::Style::Fullscreen);
     
     // Windowed
-    create(sf::VideoMode(globals::WINDOW_NATIVE_RESOLUTION_X * globals::scale, globals::WINDOW_NATIVE_RESOLUTION_Y * globals::scale), "Life Below", sf::Style::Close);
+    _scale = 1; // TEMP
+    create(sf::VideoMode(globals::WINDOW_NATIVE_RESOLUTION_X * _scale, globals::WINDOW_NATIVE_RESOLUTION_Y * _scale), "Life Below", sf::Style::Close);
 
     setMouseCursorGrabbed(true);
 
@@ -47,6 +48,11 @@ void Window::handleEvent(sf::Event& event)
         {
             setMouseCursorGrabbed(true);
         }
+
+        // TEMP: Remove after it's confirmed that clicks are being registered properly on both the game world and UI.
+        sf::Vector2f clickedGamePixel = mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+        std::cout << "clicked: " << clickedGamePixel.x << "," << clickedGamePixel.y << std::endl;
+        // TODO:: Test UI clicking
     }
     else if (event.type == sf::Event::MouseMoved)
     {
@@ -82,23 +88,23 @@ void Window::handleEvent(sf::Event& event)
         }
         else if (event.key.code == sf::Keyboard::Up)
         {
-            ++globals::scale;
-            if (globals::scale > globals::WINDOW_SCALING_MAX)
+            ++_scale;
+            if (_scale > globals::WINDOW_SCALING_MAX)
             {
-                globals::scale = globals::WINDOW_SCALING_MAX;
+                _scale = globals::WINDOW_SCALING_MAX;
             }
-            updateWindowSize(globals::scale);
-            std::cout << "Scale: " << globals::scale << std::endl;
+            updateWindowSize(_scale);
+            std::cout << "Scale: " << _scale << std::endl;
         }
         else if (event.key.code == sf::Keyboard::Down)
         {
-            --globals::scale;
-            if (globals::scale < globals::WINDOW_SCALING_MIN)
+            --_scale;
+            if (_scale < globals::WINDOW_SCALING_MIN)
             {
-                globals::scale = globals::WINDOW_SCALING_MIN;
+                _scale = globals::WINDOW_SCALING_MIN;
             }
-            updateWindowSize(globals::scale);
-            std::cout << "Scale: " << globals::scale << std::endl;
+            updateWindowSize(_scale);
+            std::cout << "Scale: " << _scale << std::endl;
         }
     }
 }
@@ -262,5 +268,5 @@ void Window::setMouseCursorGrabbed(bool grab)
 
 void Window::updateWindowSize(const int& scale)
 {
-    setSize(sf::Vector2u(globals::WINDOW_NATIVE_RESOLUTION_X * globals::scale, globals::WINDOW_NATIVE_RESOLUTION_Y * globals::scale));
+    setSize(sf::Vector2u(globals::WINDOW_NATIVE_RESOLUTION_X * _scale, globals::WINDOW_NATIVE_RESOLUTION_Y * _scale));
 }
