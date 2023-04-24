@@ -16,8 +16,10 @@ Window::Window()
     
     // Windowed
     create(sf::VideoMode(globals::WINDOW_NATIVE_RESOLUTION_X * globals::scale, globals::WINDOW_NATIVE_RESOLUTION_Y * globals::scale), "Life Below", sf::Style::Close);
-    
+
     setMouseCursorGrabbed(true);
+
+    setFramerateLimit(120);
 
     _panDirection = NONE;
 }
