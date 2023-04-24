@@ -24,10 +24,10 @@ LIBRARIES += -static -lwinpthread
 program : $(OBJECTS)
 	g++ -o $(PROGRAM_NAME) $(INCLUDE) $(OBJECTS) $(LIBRARIES)
 
-LifeBelow.o : src/LifeBelow.cpp src/Window.h src/Globals.h
+LifeBelow.o : src/LifeBelow.cpp src/Window.h src/Global.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/LifeBelow.cpp
 
-Window.o : src/Window.h src/Window.cpp src/Globals.h
+Window.o : src/Window.h src/Window.cpp src/Global.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/Window.cpp
 
 clean :

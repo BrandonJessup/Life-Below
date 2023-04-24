@@ -39,7 +39,7 @@ class Window : public sf::RenderWindow
         sf::Clock _panClock;
         sf::Cursor _panCursors[9];
         bool _cursorIsGrabbed;
-        int _scale; // TEMP: Delete and change everything to use globals::WINDOW_SCALE after we settle on which scale to use
+        int _scale; // TEMP: Delete and change everything to use global::WINDOW_SCALE after we settle on which scale to use
 };
 
 #endif // WINDOW_H

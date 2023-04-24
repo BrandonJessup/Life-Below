@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Globals.h"
+#include "Global.h"
 
 Window::Window()
 {
@@ -16,7 +16,7 @@ Window::Window()
     
     // Windowed
     _scale = 1; // TEMP
-    create(sf::VideoMode(globals::WINDOW_NATIVE_RESOLUTION_X * _scale, globals::WINDOW_NATIVE_RESOLUTION_Y * _scale), "Life Below", sf::Style::Close);
+    create(sf::VideoMode(global::WINDOW_NATIVE_RESOLUTION_X * _scale, global::WINDOW_NATIVE_RESOLUTION_Y * _scale), "Life Below", sf::Style::Close);
 
     setMouseCursorGrabbed(true);
 
@@ -28,7 +28,7 @@ Window::Window()
 void Window::onResize()
 {
     sf::View view = getView();
-    view.setSize(globals::WINDOW_NATIVE_RESOLUTION_X, globals::WINDOW_NATIVE_RESOLUTION_Y);
+    view.setSize(global::WINDOW_NATIVE_RESOLUTION_X, global::WINDOW_NATIVE_RESOLUTION_Y);
     setView(view);
 }
 
@@ -89,9 +89,9 @@ void Window::handleEvent(sf::Event& event)
         else if (event.key.code == sf::Keyboard::Up)
         {
             ++_scale;
-            if (_scale > globals::WINDOW_SCALING_MAX)
+            if (_scale > global::WINDOW_SCALING_MAX)
             {
-                _scale = globals::WINDOW_SCALING_MAX;
+                _scale = global::WINDOW_SCALING_MAX;
             }
             updateWindowSize(_scale);
             std::cout << "Scale: " << _scale << std::endl;
@@ -99,9 +99,9 @@ void Window::handleEvent(sf::Event& event)
         else if (event.key.code == sf::Keyboard::Down)
         {
             --_scale;
-            if (_scale < globals::WINDOW_SCALING_MIN)
+            if (_scale < global::WINDOW_SCALING_MIN)
             {
-                _scale = globals::WINDOW_SCALING_MIN;
+                _scale = global::WINDOW_SCALING_MIN;
             }
             updateWindowSize(_scale);
             std::cout << "Scale: " << _scale << std::endl;
@@ -134,10 +134,10 @@ bool Window::mouseInEdgePanArea(sf::Event::MouseMoveEvent mousePosition)
 {
     sf::Vector2u windowSize = getSize();
     if (
-        mousePosition.x < globals::EDGE_PAN_REGION_THICKNESS
-        || mousePosition.x > windowSize.x - globals::EDGE_PAN_REGION_THICKNESS - 1
-        || mousePosition.y < globals::EDGE_PAN_REGION_THICKNESS
-        || mousePosition.y > windowSize.y - globals::EDGE_PAN_REGION_THICKNESS - 1
+        mousePosition.x < global::EDGE_PAN_REGION_THICKNESS
+        || mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1
+        || mousePosition.y < global::EDGE_PAN_REGION_THICKNESS
+        || mousePosition.y > windowSize.y - global::EDGE_PAN_REGION_THICKNESS - 1
     )
     {
         return true;
@@ -149,35 +149,35 @@ bool Window::mouseInEdgePanArea(sf::Event::MouseMoveEvent mousePosition)
 Window::EdgePanDirection Window::determineEdgePanDirection(sf::Event::MouseMoveEvent mousePosition)
 {
     sf::Vector2u windowSize = getSize();
-    if (mousePosition.x < globals::EDGE_PAN_REGION_THICKNESS && mousePosition.y < globals::EDGE_PAN_REGION_THICKNESS)
+    if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS && mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
     {
         return NORTH_WEST;
     }
-    else if (mousePosition.x < globals::EDGE_PAN_REGION_THICKNESS && mousePosition.y > windowSize.y - globals::EDGE_PAN_REGION_THICKNESS - 1)
+    else if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS && mousePosition.y > windowSize.y - global::EDGE_PAN_REGION_THICKNESS - 1)
     {
         return SOUTH_WEST;
     }
-    else if (mousePosition.x < globals::EDGE_PAN_REGION_THICKNESS)
+    else if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS)
     {
         return WEST;
     }
-    else if (mousePosition.x > windowSize.x - globals::EDGE_PAN_REGION_THICKNESS - 1 && mousePosition.y < globals::EDGE_PAN_REGION_THICKNESS)
+    else if (mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1 && mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
     {
         return NORTH_EAST;
     }
-    else if (mousePosition.x > windowSize.x - globals::EDGE_PAN_REGION_THICKNESS - 1 && mousePosition.y > windowSize.y - globals::EDGE_PAN_REGION_THICKNESS - 1)
+    else if (mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1 && mousePosition.y > windowSize.y - global::EDGE_PAN_REGION_THICKNESS - 1)
     {
         return SOUTH_EAST;
     }
-    else if (mousePosition.x > windowSize.x - globals::EDGE_PAN_REGION_THICKNESS - 1)
+    else if (mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1)
     {
         return EAST;
     }
-    else if (mousePosition.y < globals::EDGE_PAN_REGION_THICKNESS)
+    else if (mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
     {
         return NORTH;
     }
-    else if (mousePosition.y > windowSize.y - globals::EDGE_PAN_REGION_THICKNESS - 1)
+    else if (mousePosition.y > windowSize.y - global::EDGE_PAN_REGION_THICKNESS - 1)
     {
         return SOUTH;
     }
@@ -203,7 +203,7 @@ void Window::panView(EdgePanDirection direction)
 
     // When this type is 'float' the movement will appear smoother, but blurrier,
     // when type is 'int' movement will appear more jagged.
-    float panBy = sinceLastPan.asMilliseconds() * (globals::EDGE_PAN_SPEED / 1000.0f);
+    float panBy = sinceLastPan.asMilliseconds() * (global::EDGE_PAN_SPEED / 1000.0f);
 
     // If elapsed time since last pan isn't long enough to amount to a measurable 
     // amount of movement, don't restart the clock.
@@ -268,5 +268,5 @@ void Window::setMouseCursorGrabbed(bool grab)
 
 void Window::updateWindowSize(const int& scale)
 {
-    setSize(sf::Vector2u(globals::WINDOW_NATIVE_RESOLUTION_X * _scale, globals::WINDOW_NATIVE_RESOLUTION_Y * _scale));
+    setSize(sf::Vector2u(global::WINDOW_NATIVE_RESOLUTION_X * _scale, global::WINDOW_NATIVE_RESOLUTION_Y * _scale));
 }
