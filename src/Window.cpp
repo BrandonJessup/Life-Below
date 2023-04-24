@@ -264,5 +264,4 @@ void Window::setMouseCursorGrabbed(bool grab)
 void Window::updateWindowSize(const int& scale)
 {
     setSize(sf::Vector2u(globals::WINDOW_NATIVE_RESOLUTION_X * globals::scale, globals::WINDOW_NATIVE_RESOLUTION_Y * globals::scale));
-
 }

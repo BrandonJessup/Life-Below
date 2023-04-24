@@ -33,6 +33,7 @@ class Window : public sf::RenderWindow
         void panView(EdgePanDirection direction);
         bool isWithinWindowBounds(int x, int y);
         void setMouseCursorGrabbed(bool grab);
+        void updateWindowSize(const int& scale);
 
         EdgePanDirection _panDirection;
         sf::Clock _panClock;
