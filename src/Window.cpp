@@ -1,5 +1,7 @@
 #include "Window.h"
 
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 
 #include "Globals.h"
