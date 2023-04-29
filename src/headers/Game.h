@@ -4,6 +4,7 @@
 #include "Window.h"
 
 #include "World.h"
+#include "DevDisplay.h"
 
 class Game
 {
@@ -18,7 +19,7 @@ class Game
         Window _window;
         World _world;
         // UserInterface _userInterface;
-        // DevDisplay _devDisplay;
+        DevDisplay _devDisplay;
 
         int _scale; // TEMP: Delete and change everything to use global::WINDOW_SCALE after we settle on which scale to use
 };

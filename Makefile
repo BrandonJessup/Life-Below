@@ -1,7 +1,7 @@
 # Replace with location of SFML on your machine.
 SFML = C:/Libraries/C++/SFML-2.5.1
 
-OBJECTS = LifeBelow.o Game.o Window.o World.o CursorManager.o
+OBJECTS = LifeBelow.o Game.o Window.o World.o DevDisplay.o CursorManager.o
 
 PROGRAM_NAME = "Life Below.exe"
 
@@ -27,7 +27,7 @@ program : $(OBJECTS)
 LifeBelow.o : src/LifeBelow.cpp src/headers/Game.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/LifeBelow.cpp
 
-Game.o : src/headers/Game.h src/Game.cpp src/headers/Window.h src/headers/Global.h src/headers/World.h src/headers/CursorManager.h
+Game.o : src/headers/Game.h src/Game.cpp src/headers/Window.h src/headers/Global.h src/headers/World.h src/headers/CursorManager.h src/headers/DevDisplay.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/Game.cpp
 
 Window.o : src/headers/Window.h src/Window.cpp src/headers/Global.h
@@ -35,6 +35,9 @@ Window.o : src/headers/Window.h src/Window.cpp src/headers/Global.h
 
 World.o : src/headers/World.h src/World.cpp src/headers/Global.h src/headers/CursorManager.h src/headers/EdgePanDirection.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/World.cpp
+
+DevDisplay.o : src/headers/DevDisplay.h src/DevDisplay.cpp src/headers/Global.h
+	g++ -c -DSFML_STATIC $(INCLUDE) src/DevDisplay.cpp
 
 CursorManager.o : src/headers/CursorManager.h src/CursorManager.cpp src/headers/EdgePanDirection.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/CursorManager.cpp

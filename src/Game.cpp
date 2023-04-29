@@ -1,11 +1,10 @@
 #include "headers/Game.h"
 
-#include <iostream>
-
 #include "headers/Global.h"
 #include "headers/CursorManager.h"
 #include "headers/Window.h"
 #include "headers/World.h"
+#include "headers/DevDisplay.h"
 
 Game::Game()
 {
@@ -32,6 +31,7 @@ void Game::run()
         _window.clear();
 
         _world.draw(_window);
+        _devDisplay.draw(_window);
         
         _window.display();
     }
@@ -85,7 +85,7 @@ void Game::processEvent(sf::Event& event)
                 _scale = global::WINDOW_SCALING_MAX;
             }
             _window.updateWindowSize(_scale);
-            std::cout << "Scale: " << _scale << std::endl;
+            _devDisplay.scaleChanged(_scale);
         }
         else if (event.key.code == sf::Keyboard::Down)
         {
@@ -95,7 +95,7 @@ void Game::processEvent(sf::Event& event)
                 _scale = global::WINDOW_SCALING_MIN;
             }
             _window.updateWindowSize(_scale);
-            std::cout << "Scale: " << _scale << std::endl;
+            _devDisplay.scaleChanged(_scale);
         }
     }
 }
