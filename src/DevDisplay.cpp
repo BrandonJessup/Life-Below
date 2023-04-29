@@ -39,8 +39,10 @@ void DevDisplay::initializeView()
 
 void DevDisplay::loadFont()
 {
-    _font.loadFromFile("assets/Daydream(21px).ttf");
-    _fontSize = 21;
+    _fontSize = 16;
+    _font.loadFromFile("assets/runescape_uf(16px).ttf");
+    sf::Texture& texture = const_cast<sf::Texture&>(_font.getTexture(_fontSize));
+    texture.setSmooth(false);
 }
 
 void DevDisplay::initializeText()
@@ -49,5 +51,5 @@ void DevDisplay::initializeText()
     _text.setString(_message); // TEMP
     _text.setFillColor(sf::Color(32, 194, 14));
     _text.setCharacterSize(_fontSize);
-    _text.setPosition(4, global::WINDOW_NATIVE_RESOLUTION_Y - _fontSize * 1.7);
+    _text.setPosition(4, global::WINDOW_NATIVE_RESOLUTION_Y - _fontSize * 1.2);
 }

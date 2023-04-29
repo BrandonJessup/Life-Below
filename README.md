@@ -29,7 +29,3 @@ Microbial organisms have run out of life-sustaining energy on the planet's surfa
     - Wall tile.
     - Wall tile with moss.
     - Dead player structure.
-
-# Known issues
-- Fonts apply smooth scaling when at scales other than 1, which makes them look blurry.
-    - To fix this, glyphs will need to be loaded manually, rather than by using the `sf::Text` class.
