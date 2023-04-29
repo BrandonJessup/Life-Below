@@ -3,6 +3,8 @@
 
 #include "Window.h"
 
+#include "World.h"
+
 class Game
 {
     public:
@@ -14,8 +16,8 @@ class Game
         void frameLogic();
 
         Window _window;
+        World _world;
         // UserInterface _userInterface;
-        // Map _map;
         // DevDisplay _devDisplay;
 
         int _scale; // TEMP: Delete and change everything to use global::WINDOW_SCALE after we settle on which scale to use
