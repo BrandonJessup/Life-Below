@@ -11,7 +11,7 @@ class DevDisplay
         DevDisplay();
         void frameLogic();
         void draw(sf::RenderWindow& window);
-        void scaleChanged(const int& scale);
+        void showMessage(const std::string& message);
 
     private:
         enum TextStates

@@ -76,6 +76,7 @@ void Game::processEvent(sf::Event& event)
         else if (event.key.code == sf::Keyboard::Enter)
         {
             _world.resetView();
+            _devDisplay.showMessage("Re-centering");
         }
         else if (event.key.code == sf::Keyboard::Up)
         {
@@ -85,7 +86,7 @@ void Game::processEvent(sf::Event& event)
                 _scale = global::WINDOW_SCALING_MAX;
             }
             _window.updateWindowSize(_scale);
-            _devDisplay.scaleChanged(_scale);
+            _devDisplay.showMessage("x" + std::to_string(_scale));
         }
         else if (event.key.code == sf::Keyboard::Down)
         {
@@ -95,7 +96,7 @@ void Game::processEvent(sf::Event& event)
                 _scale = global::WINDOW_SCALING_MIN;
             }
             _window.updateWindowSize(_scale);
-            _devDisplay.scaleChanged(_scale);
+            _devDisplay.showMessage("x" + std::to_string(_scale));
         }
     }
 }

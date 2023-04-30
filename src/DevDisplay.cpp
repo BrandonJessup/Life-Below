@@ -30,9 +30,9 @@ void DevDisplay::draw(sf::RenderWindow& window)
     }
 }
 
-void DevDisplay::scaleChanged(const int& scale)
+void DevDisplay::showMessage(const std::string& message)
 {
-    _text.setString("x" + std::to_string(scale));
+    _text.setString(message);
     changeState(FULLY_VISIBLE);
 }
 
