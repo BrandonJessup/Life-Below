@@ -103,4 +103,5 @@ void Game::processEvent(sf::Event& event)
 void Game::frameLogic()
 {
     _world.frameLogic();
+    _devDisplay.frameLogic();
 }

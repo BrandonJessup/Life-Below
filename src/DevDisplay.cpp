@@ -8,19 +8,23 @@ DevDisplay::DevDisplay()
 {
     initializeView();
     loadFont();
+    _textColor = sf::Color(32, 194, 14, 255);
     initializeText();
+
+    changeState(HIDDEN);
 }
 
 void DevDisplay::frameLogic()
 {
-    // TODO: fade out text
+    tickPersistClock();
+    tickFadeClock();
 }
 
 void DevDisplay::draw(sf::RenderWindow& window)
 {
     window.setView(_view);
 
-    if (_text.getString() != "")
+    if (_activeState != HIDDEN)
     {
         window.draw(_text);
     }
@@ -29,6 +33,7 @@ void DevDisplay::draw(sf::RenderWindow& window)
 void DevDisplay::scaleChanged(const int& scale)
 {
     _text.setString("x" + std::to_string(scale));
+    changeState(FULLY_VISIBLE);
 }
 
 void DevDisplay::initializeView()
@@ -48,8 +53,64 @@ void DevDisplay::loadFont()
 void DevDisplay::initializeText()
 {
     _text.setFont(_font);
-    _text.setString(_message); // TEMP
-    _text.setFillColor(sf::Color(32, 194, 14));
+    _text.setFillColor(_textColor);
     _text.setCharacterSize(_fontSize);
     _text.setPosition(4, global::WINDOW_NATIVE_RESOLUTION_Y - _fontSize * 1.2);
+}
+
+void DevDisplay::changeState(const TextStates& state)
+{
+    _activeState = state;
+
+    if (state == HIDDEN)
+    {
+        setTextOpacity(0);
+    }
+    else if (state == FULLY_VISIBLE)
+    {
+        _persistClock.restart();
+        setTextOpacity(255);
+    }
+    else if (state == FADING)
+    {
+        _fadeClock.restart();
+    }
+}
+
+void DevDisplay::tickPersistClock()
+{
+    if (_activeState == FULLY_VISIBLE)
+    {
+        sf::Time elapsed = _persistClock.getElapsedTime();
+        if (elapsed.asMilliseconds() > global::DEV_TEXT_PERSIST_DURATION)
+        {
+            _persistRemainder = elapsed.asMilliseconds() - global::DEV_TEXT_PERSIST_DURATION;
+
+            changeState(FADING);
+        }
+    }
+}
+
+void DevDisplay::tickFadeClock()
+{
+    if (_activeState == FADING)
+    {
+        sf::Time elapsed = _fadeClock.getElapsedTime();
+        if (elapsed.asMilliseconds() +  _persistRemainder < global::DEV_TEXT_FADE_DURATION)
+        {
+            float percentageTimePassed = (elapsed.asMilliseconds() +  _persistRemainder) / (float) global::DEV_TEXT_FADE_DURATION;
+            int newOpacity = 255 - (255 * percentageTimePassed);
+            setTextOpacity(newOpacity);
+        }
+        else
+        {
+            changeState(HIDDEN);
+        }
+    }
+}
+
+void DevDisplay::setTextOpacity(const int& opacity)
+{
+    _textColor.a = opacity;
+    _text.setFillColor(_textColor);
 }

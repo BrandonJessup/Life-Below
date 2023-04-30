@@ -14,15 +14,31 @@ class DevDisplay
         void scaleChanged(const int& scale);
 
     private:
+        enum TextStates
+        {
+            HIDDEN,
+            FULLY_VISIBLE,
+            FADING
+        };
+
         void initializeView();
         void loadFont();
         void initializeText();
 
+        void changeState(const TextStates& state);
+        void tickPersistClock();
+        void tickFadeClock();
+        void setTextOpacity(const int& opacity);
+
+        TextStates _activeState;
         sf::View _view;
         sf::Font _font;
         int _fontSize;
         sf::Text _text;
-        std::string _message;
+        sf::Clock _persistClock;
+        sf::Clock _fadeClock;
+        int _persistRemainder;
+        sf::Color _textColor;
 };
 
 #endif // DEVDISPLAY_H
