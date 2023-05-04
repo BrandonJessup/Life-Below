@@ -78,7 +78,7 @@ void Game::processEvent(sf::Event& event)
             _world.resetView();
             _devDisplay.showMessage("Re-centering");
         }
-        else if (event.key.code == sf::Keyboard::Up)
+        else if (event.key.code == sf::Keyboard::Equal)
         {
             ++_scale;
             if (_scale > global::WINDOW_SCALING_MAX)
@@ -88,7 +88,7 @@ void Game::processEvent(sf::Event& event)
             _window.updateWindowSize(_scale);
             _devDisplay.showMessage("x" + std::to_string(_scale));
         }
-        else if (event.key.code == sf::Keyboard::Down)
+        else if (event.key.code == sf::Keyboard::Dash)
         {
             --_scale;
             if (_scale < global::WINDOW_SCALING_MIN)
