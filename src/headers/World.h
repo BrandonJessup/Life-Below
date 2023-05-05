@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "EdgePanDirection.h"
+#include "Tiles.h"
 
 class World
 {
@@ -21,11 +22,15 @@ class World
 
         EdgePanDirection determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
         void panView(EdgePanDirection direction);
+        void drawMap(sf::RenderWindow& window);
+        void drawEntities(sf::RenderWindow& window);
 
         sf::View _view;
         sf::Cursor _panCursors[9];
         EdgePanDirection _panDirection;
         sf::Clock _panClock;
+        
+        Tiles _tiles;
 
         sf::Texture _tempTexture; // TEMP
         sf::Sprite _tempSprite; // TEMP

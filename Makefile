@@ -1,7 +1,7 @@
 # Replace with location of SFML on your machine.
 SFML = C:/Libraries/C++/SFML-2.5.1
 
-OBJECTS = LifeBelow.o Game.o Window.o World.o DevDisplay.o CursorManager.o
+OBJECTS = LifeBelow.o Game.o Window.o World.o DevDisplay.o CursorManager.o TileMap.o Tiles.o
 
 PROGRAM_NAME = "Life Below.exe"
 
@@ -33,7 +33,7 @@ Game.o : src/headers/Game.h src/Game.cpp src/headers/Window.h src/headers/Global
 Window.o : src/headers/Window.h src/Window.cpp src/headers/Global.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/Window.cpp
 
-World.o : src/headers/World.h src/World.cpp src/headers/Global.h src/headers/CursorManager.h src/headers/EdgePanDirection.h
+World.o : src/headers/World.h src/World.cpp src/headers/Global.h src/headers/CursorManager.h src/headers/EdgePanDirection.h src/headers/Tiles.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/World.cpp
 
 DevDisplay.o : src/headers/DevDisplay.h src/DevDisplay.cpp src/headers/Global.h
@@ -41,6 +41,12 @@ DevDisplay.o : src/headers/DevDisplay.h src/DevDisplay.cpp src/headers/Global.h
 
 CursorManager.o : src/headers/CursorManager.h src/CursorManager.cpp src/headers/EdgePanDirection.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/CursorManager.cpp
+
+TileMap.o : src/headers/TileMap.h src/TileMap.cpp
+	g++ -c -DSFML_STATIC $(INCLUDE) src/TileMap.cpp
+
+Tiles.o : src/headers/Tiles.h src/Tiles.cpp src/headers/TileMap.h
+	g++ -c -DSFML_STATIC $(INCLUDE) src/Tiles.cpp
 
 clean :
 	del $(PROGRAM_NAME) $(OBJECTS)

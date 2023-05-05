@@ -25,8 +25,8 @@ void World::draw(sf::RenderWindow& window)
 {
     window.setView(_view);
 
-    // TEMP
-    window.draw(_tempSprite);
+    drawMap(window);
+    drawEntities(window);
 }
 
 void World::setPanDirection(const EdgePanDirection& direction)
@@ -155,4 +155,15 @@ void World::panView(EdgePanDirection direction)
             _view.move(-panBy, -panBy);
         }
     }
+}
+
+void World::drawMap(sf::RenderWindow& window)
+{
+    window.draw(_tiles);
+}
+
+void World::drawEntities(sf::RenderWindow& window)
+{
+    // TEMP
+    window.draw(_tempSprite);
 }
