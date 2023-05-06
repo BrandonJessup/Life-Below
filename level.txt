@@ -1,0 +1,17 @@
+START
+000000000000
+011110111110
+011111100110
+001111100000
+001111111110
+011111111110
+011111111110
+000000000000
+END
+
+0 = Wall
+1 = Floor
+
+- Put your level design between START and END
+- use only 0 and 1
+- ensure all rows have the same number of tiles (should be a rectangle of some kind).
