@@ -33,13 +33,13 @@ Game.o : src/headers/Game.h src/Game.cpp src/headers/Window.h src/headers/Global
 Window.o : src/headers/Window.h src/Window.cpp src/headers/Global.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/Window.cpp
 
-World.o : src/headers/World.h src/World.cpp src/headers/Global.h src/headers/CursorManager.h src/headers/EdgePanDirection.h src/headers/Tiles.h
+World.o : src/headers/World.h src/World.cpp src/headers/Global.h src/headers/CursorManager.h src/headers/Direction.h src/headers/Tiles.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/World.cpp
 
 DevDisplay.o : src/headers/DevDisplay.h src/DevDisplay.cpp src/headers/Global.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/DevDisplay.cpp
 
-CursorManager.o : src/headers/CursorManager.h src/CursorManager.cpp src/headers/EdgePanDirection.h
+CursorManager.o : src/headers/CursorManager.h src/CursorManager.cpp src/headers/Direction.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/CursorManager.cpp
 
 TileMap.o : src/headers/TileMap.h src/TileMap.cpp

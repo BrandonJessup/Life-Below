@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "headers/Global.h"
-#include "headers/EdgePanDirection.h"
+#include "headers/Direction.h"
 #include "headers/CursorManager.h"
 
 World::World()
@@ -13,7 +13,7 @@ World::World()
     // TEMP
     loadTempSprite();
 
-    _panDirection = NONE;
+    _panDirection = NO_DIRECTION;
 }
 
 void World::frameLogic()
@@ -29,14 +29,14 @@ void World::draw(sf::RenderWindow& window)
     drawEntities(window);
 }
 
-void World::setPanDirection(const EdgePanDirection& direction)
+void World::setPanDirection(const Direction& direction)
 {
     _panDirection = direction;
 }
 
 void World::updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
 {
-    EdgePanDirection oldPanDirection = _panDirection;
+    Direction oldPanDirection = _panDirection;
     _panDirection = determineEdgePanDirection(windowSize, mousePosition);
     if (_panDirection != oldPanDirection)
     {
@@ -65,7 +65,7 @@ void World::loadTempSprite()
     _tempSprite.setPosition((global::WINDOW_NATIVE_RESOLUTION_X - _tempTexture.getSize().x) / 2, (global::WINDOW_NATIVE_RESOLUTION_Y - _tempTexture.getSize().y) / 2);
 }
 
-EdgePanDirection World::determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
+Direction World::determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
 {
     if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS && mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
     {
@@ -100,12 +100,12 @@ EdgePanDirection World::determineEdgePanDirection(const sf::Vector2u& windowSize
         return SOUTH;
     }
     
-    return NONE;
+    return NO_DIRECTION;
 }
 
-void World::panView(EdgePanDirection direction)
+void World::panView(Direction direction)
 {
-    if (_panDirection != NONE)
+    if (_panDirection != NO_DIRECTION)
     {
         sf::Time sinceLastPan = _panClock.getElapsedTime();
 

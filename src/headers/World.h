@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "EdgePanDirection.h"
+#include "Direction.h"
 #include "Tiles.h"
 
 class World
@@ -12,7 +12,7 @@ class World
         World();
         void frameLogic();
         void draw(sf::RenderWindow& window);
-        void setPanDirection(const EdgePanDirection& direction);
+        void setPanDirection(const Direction& direction);
         void updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
         void resetView();
 
@@ -20,14 +20,14 @@ class World
         void initializeView();
         void loadTempSprite(); // TEMP
 
-        EdgePanDirection determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
-        void panView(EdgePanDirection direction);
+        Direction determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
+        void panView(Direction direction);
         void drawMap(sf::RenderWindow& window);
         void drawEntities(sf::RenderWindow& window);
 
         sf::View _view;
         sf::Cursor _panCursors[9];
-        EdgePanDirection _panDirection;
+        Direction _panDirection;
         sf::Clock _panClock;
         
         Tiles _tiles;

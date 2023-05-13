@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "headers/EdgePanDirection.h"
+#include "headers/Direction.h"
 
 sf::RenderWindow* CursorManager::_window;
 sf::Cursor CursorManager::_panCursors[9];
@@ -16,7 +16,7 @@ void CursorManager::initialize(sf::RenderWindow& window)
 
 void CursorManager::initializeCursors()
 {
-    _panCursors[NONE].loadFromSystem(sf::Cursor::Arrow);
+    _panCursors[NO_DIRECTION].loadFromSystem(sf::Cursor::Arrow);
     _panCursors[NORTH].loadFromSystem(sf::Cursor::SizeVertical);
     _panCursors[NORTH_EAST].loadFromSystem(sf::Cursor::SizeBottomLeftTopRight);
     _panCursors[EAST].loadFromSystem(sf::Cursor::SizeHorizontal);
@@ -29,10 +29,10 @@ void CursorManager::initializeCursors()
 
 void CursorManager::setCursorToDefault()
 {
-    _window->setMouseCursor(_panCursors[NONE]);
+    _window->setMouseCursor(_panCursors[NO_DIRECTION]);
 }
 
-void CursorManager::setCursorToMatchPanDirection(const EdgePanDirection& direction)
+void CursorManager::setCursorToMatchPanDirection(const Direction& direction)
 {
     _window->setMouseCursor(_panCursors[direction]);
 }

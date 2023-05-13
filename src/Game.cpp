@@ -62,7 +62,7 @@ void Game::processEvent(sf::Event& event)
         }
         else if (!_window.mouseInEdgePanArea(event.mouseMove))
         {
-            _world.setPanDirection(EdgePanDirection::NONE);
+            _world.setPanDirection(Direction::NO_DIRECTION);
             CursorManager::setCursorToDefault();
         }
     }

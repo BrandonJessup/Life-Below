@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "EdgePanDirection.h"
+#include "Direction.h"
 
 class CursorManager
 {
@@ -11,7 +11,7 @@ class CursorManager
         static void initialize(sf::RenderWindow& window);
 
         static void setCursorToDefault();
-        static void setCursorToMatchPanDirection(const EdgePanDirection& direction);
+        static void setCursorToMatchPanDirection(const Direction& direction);
 
     private:
         // Prevent instantiation.
