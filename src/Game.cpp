@@ -8,9 +8,7 @@
 
 Game::Game()
 {
-    _scale = 1; // TEMP: Delete and change everything to use global::WINDOW_SCALE after we settle on which scale to use
-
-    _window.create(_scale);
+    _window.create();
 
     CursorManager::initialize(_window);
 }
@@ -27,7 +25,6 @@ void Game::run()
 
         frameLogic();
 
-        // TEMP: Draw sprite to screen so we have some kind of temporary visual while I get the core functionality set up.
         _window.clear();
 
         _world.draw(_window);
@@ -77,26 +74,6 @@ void Game::processEvent(sf::Event& event)
         {
             _world.resetView();
             _devDisplay.showMessage("Re-centering");
-        }
-        else if (event.key.code == sf::Keyboard::Equal)
-        {
-            ++_scale;
-            if (_scale > global::WINDOW_SCALING_MAX)
-            {
-                _scale = global::WINDOW_SCALING_MAX;
-            }
-            _window.updateWindowSize(_scale);
-            _devDisplay.showMessage("x" + std::to_string(_scale));
-        }
-        else if (event.key.code == sf::Keyboard::Dash)
-        {
-            --_scale;
-            if (_scale < global::WINDOW_SCALING_MIN)
-            {
-                _scale = global::WINDOW_SCALING_MIN;
-            }
-            _window.updateWindowSize(_scale);
-            _devDisplay.showMessage("x" + std::to_string(_scale));
         }
     }
 }

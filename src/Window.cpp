@@ -8,17 +8,12 @@ Window::Window()
 {
 }
 
-void Window::create(const int& scale)
+void Window::create()
 {
-    sf::RenderWindow::create(sf::VideoMode(global::WINDOW_NATIVE_RESOLUTION_X * scale, global::WINDOW_NATIVE_RESOLUTION_Y * scale), "Life Below", sf::Style::Close);
+    sf::RenderWindow::create(sf::VideoMode(global::WINDOW_NATIVE_RESOLUTION_X * global::WINDOW_SCALE, global::WINDOW_NATIVE_RESOLUTION_Y * global::WINDOW_SCALE), "Life Below", sf::Style::Close);
     setFramerateLimit(120);
 
     setMouseCursorGrabbed(true);
-}
-
-void Window::updateWindowSize(const int& scale)
-{
-    setSize(sf::Vector2u(global::WINDOW_NATIVE_RESOLUTION_X * scale, global::WINDOW_NATIVE_RESOLUTION_Y * scale));
 }
 
 bool Window::mouseInEdgePanArea(sf::Event::MouseMoveEvent& mousePosition)

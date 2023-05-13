@@ -20,8 +20,6 @@ class Game
         World _world;
         // UserInterface _userInterface;
         DevDisplay _devDisplay;
-
-        int _scale; // TEMP: Delete and change everything to use global::WINDOW_SCALE after we settle on which scale to use
 };
 
 #endif // GAME_H

@@ -7,8 +7,7 @@ class Window : public sf::RenderWindow
 {
     public:
         Window();
-        void create(const int& scale);
-        void updateWindowSize(const int& scale); // TEMP: Delete and change everything to use global::WINDOW_SCALE after we settle on which scale to use
+        void create();
         bool mouseInEdgePanArea(sf::Event::MouseMoveEvent& mousePosition);
         void setMouseCursorGrabbed(const bool& grab);
         bool cursorGrabbed();
