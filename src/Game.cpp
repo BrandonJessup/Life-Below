@@ -59,8 +59,11 @@ void Game::processEvent(sf::Event& event)
         }
         else if (!_window.mouseInEdgePanArea(event.mouseMove))
         {
-            _world.setPanDirection(Direction::NO_DIRECTION);
-            CursorManager::setCursorToDefault();
+            if (_world.isPanning())
+            {
+                _world.setPanDirection(Direction::NO_DIRECTION);
+                CursorManager::setCursorToDefault();
+            }
         }
     }
     // TEMP: Development hotkeys.

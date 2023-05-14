@@ -35,6 +35,11 @@ void World::setPanDirection(const Direction& direction)
     _panClock.restart();
 }
 
+bool World::isPanning()
+{
+    return _panDirection != Direction::NO_DIRECTION;
+}
+
 void World::updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
 {
     Direction oldPanDirection = _panDirection;
