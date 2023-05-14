@@ -17,6 +17,7 @@ World::World()
 
     _panDirectionHorizontal = NO_DIRECTION;
     _panDirectionVertical = NO_DIRECTION;
+    _keyPanning = false;
 }
 
 void World::frameLogic()
@@ -71,6 +72,74 @@ void World::updatePanDirection(const sf::Vector2u& windowSize, const sf::Vector2
 void World::resetView()
 {
     _view.setCenter(global::WINDOW_NATIVE_RESOLUTION_X / 2, global::WINDOW_NATIVE_RESOLUTION_Y / 2);
+}
+
+void World::updateKeyPan()
+{
+    bool up = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+    bool down = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+    bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+    bool right = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+
+    Direction oldHorizontal = _panDirectionHorizontal;
+    Direction oldVertical = _panDirectionVertical;
+
+    if (up && down)
+    {
+        _panDirectionVertical = NO_DIRECTION;
+    }
+    else if (up)
+    {
+        _panDirectionVertical = NORTH;
+    }
+    else if (down)
+    {
+        _panDirectionVertical = SOUTH;
+    }
+    else 
+    {
+        _panDirectionVertical = NO_DIRECTION;
+    }
+
+    if (left && right)
+    {
+        _panDirectionHorizontal = NO_DIRECTION;
+    }
+    else if (left)
+    {
+        _panDirectionHorizontal = WEST;
+    }
+    else if (right)
+    {
+        _panDirectionHorizontal = EAST;
+    }
+    else 
+    {
+        _panDirectionHorizontal = NO_DIRECTION;
+    }
+
+    if (oldHorizontal != _panDirectionHorizontal)
+    {
+        _panClockHorizontal.restart();
+    }
+    if (oldVertical != _panDirectionVertical)
+    {
+        _panClockVertical.restart();
+    }
+
+    if (_panDirectionHorizontal == NO_DIRECTION && _panDirectionVertical == NO_DIRECTION)
+    {
+        _keyPanning = false;
+    }
+    else
+    {
+        _keyPanning = true;
+    }
+}
+
+bool World::isKeyPanning()
+{
+    return _keyPanning;
 }
 
 void World::initializeView()

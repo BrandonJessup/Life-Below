@@ -53,23 +53,37 @@ void Game::processEvent(sf::Event& event)
     }
     else if (event.type == sf::Event::MouseMoved)
     {
-        if (_window.cursorGrabbed() && _window.mouseInEdgePanArea(event.mouseMove))
+        if (!_world.isKeyPanning())
         {
-            _world.updatePanDirection(_window.getSize(), event.mouseMove);
-        }
-        else if (!_window.mouseInEdgePanArea(event.mouseMove))
-        {
-            if (_world.isPanning())
+            if (_window.cursorGrabbed() && _window.mouseInEdgePanArea(event.mouseMove))
             {
-                _world.stopPanning();
-                CursorManager::setCursorToDefault();
+                _world.updatePanDirection(_window.getSize(), event.mouseMove);
+            }
+            else if (!_window.mouseInEdgePanArea(event.mouseMove))
+            {
+                if (_world.isPanning())
+                {
+                    _world.stopPanning();
+                    CursorManager::setCursorToDefault();
+                }
             }
         }
     }
-    // TEMP: Development hotkeys.
     else if (event.type == sf::Event::KeyPressed)
     {
-        if (event.key.code == sf::Keyboard::Escape)
+        if 
+        (
+            event.key.code == sf::Keyboard::Up ||
+            event.key.code == sf::Keyboard::Down ||
+            event.key.code == sf::Keyboard::Left ||
+            event.key.code == sf::Keyboard::Right
+        )
+        {
+            _world.updateKeyPan();
+            CursorManager::setCursorToDefault();
+        }
+        // TEMP: Development hotkeys.
+        else if (event.key.code == sf::Keyboard::Escape)
         {
             _window.close();
         }
@@ -77,6 +91,26 @@ void Game::processEvent(sf::Event& event)
         {
             _world.resetView();
             _devDisplay.showMessage("Re-centering");
+        }
+    }
+    else if (event.type == sf::Event::KeyReleased)
+    {
+        if 
+        (
+            event.key.code == sf::Keyboard::Up ||
+            event.key.code == sf::Keyboard::Down ||
+            event.key.code == sf::Keyboard::Left ||
+            event.key.code == sf::Keyboard::Right
+        )
+        {
+            _world.updateKeyPan();
+            if (!_world.isKeyPanning())
+            {
+                if (_window.cursorGrabbed() && _window.mouseInEdgePanArea(sf::Mouse::getPosition(_window)))
+                {
+                    _world.updatePanDirection(_window.getSize(), sf::Mouse::getPosition(_window));
+                }
+            }
         }
     }
 }

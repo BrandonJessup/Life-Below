@@ -17,6 +17,8 @@ class World
         void updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
         void updatePanDirection(const sf::Vector2u& windowSize, const sf::Vector2i& mousePosition);
         void resetView();
+        void updateKeyPan();
+        bool isKeyPanning();
 
     private:
         void initializeView();
@@ -34,6 +36,7 @@ class World
         Direction _panDirectionVertical;
         sf::Clock _panClockHorizontal;
         sf::Clock _panClockVertical;
+        bool _keyPanning;
         
         Tiles _tiles;
 
