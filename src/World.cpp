@@ -1,5 +1,7 @@
 #include "headers/World.h"
 
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 
 #include "headers/Global.h"
@@ -13,12 +15,13 @@ World::World()
     // TEMP
     loadTempSprite();
 
-    _panDirection = NO_DIRECTION;
+    _panDirectionHorizontal = NO_DIRECTION;
+    _panDirectionVertical = NO_DIRECTION;
 }
 
 void World::frameLogic()
 {
-    panView(_panDirection);
+    panView();
 }
 
 void World::draw(sf::RenderWindow& window)
@@ -31,22 +34,32 @@ void World::draw(sf::RenderWindow& window)
 
 void World::stopPanning()
 {
-    _panDirection = Direction::NO_DIRECTION;
+    _panDirectionHorizontal = NO_DIRECTION;
+    _panDirectionVertical = NO_DIRECTION;
 }
 
 bool World::isPanning()
 {
-    return _panDirection != Direction::NO_DIRECTION;
+    return _panDirectionHorizontal != NO_DIRECTION || _panDirectionVertical != NO_DIRECTION;
 }
 
 void World::updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
 {
-    Direction oldPanDirection = _panDirection;
-    _panDirection = determineEdgePanDirection(windowSize, mousePosition);
-    if (_panDirection != oldPanDirection)
+    Direction oldHorizontal = _panDirectionHorizontal;
+    Direction oldVertical = _panDirectionVertical;
+    determineEdgePanDirection(windowSize, mousePosition);
+    if (oldHorizontal != _panDirectionHorizontal || oldVertical != _panDirectionVertical)
     {
-        _panClock.restart();
-        CursorManager::setCursorToMatchPanDirection(_panDirection);
+        CursorManager::setCursorToMatchPanDirection(cardinalToOrdinal(_panDirectionHorizontal, _panDirectionVertical));
+    }
+
+    if (oldHorizontal != _panDirectionHorizontal)
+    {
+        _panClockHorizontal.restart();
+    }
+    if (oldVertical != _panDirectionVertical)
+    {
+        _panClockVertical.restart();
     }
 }
 
@@ -70,49 +83,40 @@ void World::loadTempSprite()
     _tempSprite.setPosition((global::WINDOW_NATIVE_RESOLUTION_X - _tempTexture.getSize().x) / 2, (global::WINDOW_NATIVE_RESOLUTION_Y - _tempTexture.getSize().y) / 2);
 }
 
-Direction World::determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
-{
-    if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS && mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
+void World::determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
+{   
+    if (mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
     {
-        return NORTH_WEST;
-    }
-    else if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS && mousePosition.y > windowSize.y - global::EDGE_PAN_REGION_THICKNESS - 1)
-    {
-        return SOUTH_WEST;
-    }
-    else if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS)
-    {
-        return WEST;
-    }
-    else if (mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1 && mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
-    {
-        return NORTH_EAST;
-    }
-    else if (mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1 && mousePosition.y > windowSize.y - global::EDGE_PAN_REGION_THICKNESS - 1)
-    {
-        return SOUTH_EAST;
-    }
-    else if (mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1)
-    {
-        return EAST;
-    }
-    else if (mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
-    {
-        return NORTH;
+        _panDirectionVertical = NORTH;
     }
     else if (mousePosition.y > windowSize.y - global::EDGE_PAN_REGION_THICKNESS - 1)
     {
-        return SOUTH;
+        _panDirectionVertical = SOUTH;
     }
-    
-    return NO_DIRECTION;
+    else 
+    {
+        _panDirectionVertical = NO_DIRECTION;
+    }
+
+    if (mousePosition.x < global::EDGE_PAN_REGION_THICKNESS)
+    {
+        _panDirectionHorizontal = WEST;
+    }
+    else if (mousePosition.x > windowSize.x - global::EDGE_PAN_REGION_THICKNESS - 1)
+    {
+        _panDirectionHorizontal = EAST;
+    }
+    else
+    {
+        _panDirectionHorizontal = NO_DIRECTION;
+    }
 }
 
-void World::panView(Direction direction)
+void World::panView()
 {
-    if (_panDirection != NO_DIRECTION)
+    if (_panDirectionHorizontal != NO_DIRECTION)
     {
-        sf::Time sinceLastPan = _panClock.getElapsedTime();
+        sf::Time sinceLastPan = _panClockHorizontal.getElapsedTime();
 
         // When this type is 'float' the movement will appear smoother, but blurrier,
         // when type is 'int' movement will appear more jagged.
@@ -125,39 +129,42 @@ void World::panView(Direction direction)
             return;
         }
 
-        _panClock.restart();
+        _panClockHorizontal.restart();
 
-        if (direction == NORTH)
-        {
-            _view.move(0, -panBy);
-        }
-        else if (direction == NORTH_EAST)
-        {
-            _view.move(panBy, -panBy);
-        }
-        else if (direction == EAST)
+        if (_panDirectionHorizontal == EAST)
         {
             _view.move(panBy, 0);
         }
-        else if (direction == SOUTH_EAST)
-        {
-            _view.move(panBy, panBy);
-        }
-        else if (direction == SOUTH)
-        {
-            _view.move(0, panBy);
-        }
-        else if (direction == SOUTH_WEST)
-        {
-            _view.move(-panBy, panBy);
-        }
-        else if (direction == WEST)
+        else if (_panDirectionHorizontal == WEST)
         {
             _view.move(-panBy, 0);
         }
-        else if (direction == NORTH_WEST)
+    }
+
+    if (_panDirectionVertical != NO_DIRECTION)
+    {
+        sf::Time sinceLastPan = _panClockVertical.getElapsedTime();
+
+        // When this type is 'float' the movement will appear smoother, but blurrier,
+        // when type is 'int' movement will appear more jagged.
+        float panBy = sinceLastPan.asMilliseconds() * (global::EDGE_PAN_SPEED / 1000.0f);
+
+        // If elapsed time since last pan isn't long enough to amount to a measurable 
+        // amount of movement, don't restart the clock.
+        if (panBy == 0)
         {
-            _view.move(-panBy, -panBy);
+            return;
+        }
+
+        _panClockVertical.restart();
+
+        if (_panDirectionVertical == NORTH)
+        {
+            _view.move(0, -panBy);
+        }
+        else if (_panDirectionVertical == SOUTH)
+        {
+            _view.move(0, panBy);
         }
     }
 }
@@ -171,4 +178,50 @@ void World::drawEntities(sf::RenderWindow& window)
 {
     // TEMP
     window.draw(_tempSprite);
+}
+
+Direction World::cardinalToOrdinal(const Direction& horizontal, const Direction& vertical)
+{
+    if (horizontal == NO_DIRECTION && vertical == NORTH)
+    {
+        return NORTH;
+    }
+    else if (horizontal == EAST && vertical == NORTH)
+    {
+        return NORTH_EAST;
+    }
+    else if (horizontal == EAST && vertical == NO_DIRECTION)
+    {
+        return EAST;
+    }
+    else if (horizontal == EAST && vertical == SOUTH)
+    {
+        return SOUTH_EAST;
+    }
+    else if (horizontal == NO_DIRECTION && vertical == SOUTH)
+    {
+        return SOUTH;
+    }
+    else if (horizontal == WEST && vertical == SOUTH)
+    {
+        return SOUTH_WEST;
+    }
+    else if (horizontal == WEST && vertical == NO_DIRECTION)
+    {
+        return WEST;
+    }
+    else if (horizontal == WEST && vertical == NORTH)
+    {
+        return NORTH_WEST;
+    }
+    else if (horizontal == NO_DIRECTION && vertical == NO_DIRECTION)
+    {
+        return NO_DIRECTION;
+    }
+    // DEBUG
+    else
+    {
+        std::cout << "Invalid direction: " << "horizontal: " << horizontal << " vertical: " << vertical << std::endl;
+        return NO_DIRECTION;
+    }
 }

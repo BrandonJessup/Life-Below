@@ -21,15 +21,18 @@ class World
         void initializeView();
         void loadTempSprite(); // TEMP
 
-        Direction determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
-        void panView(Direction direction);
+        void determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
+        void panView();
         void drawMap(sf::RenderWindow& window);
         void drawEntities(sf::RenderWindow& window);
+        Direction cardinalToOrdinal(const Direction& horizontal, const Direction& vertical);
 
         sf::View _view;
         sf::Cursor _panCursors[9];
-        Direction _panDirection;
-        sf::Clock _panClock;
+        Direction _panDirectionHorizontal;
+        Direction _panDirectionVertical;
+        sf::Clock _panClockHorizontal;
+        sf::Clock _panClockVertical;
         
         Tiles _tiles;
 
