@@ -12,7 +12,7 @@ class World
         World();
         void frameLogic();
         void draw(sf::RenderWindow& window);
-        void setPanDirection(const Direction& direction);
+        void stopPanning();
         bool isPanning();
         void updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
         void resetView();

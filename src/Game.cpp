@@ -61,7 +61,7 @@ void Game::processEvent(sf::Event& event)
         {
             if (_world.isPanning())
             {
-                _world.setPanDirection(Direction::NO_DIRECTION);
+                _world.stopPanning();
                 CursorManager::setCursorToDefault();
             }
         }

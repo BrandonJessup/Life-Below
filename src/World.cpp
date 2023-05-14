@@ -29,10 +29,9 @@ void World::draw(sf::RenderWindow& window)
     drawEntities(window);
 }
 
-void World::setPanDirection(const Direction& direction)
+void World::stopPanning()
 {
-    _panDirection = direction;
-    _panClock.restart();
+    _panDirection = Direction::NO_DIRECTION;
 }
 
 bool World::isPanning()
