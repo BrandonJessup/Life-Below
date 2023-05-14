@@ -32,6 +32,7 @@ void World::draw(sf::RenderWindow& window)
 void World::setPanDirection(const Direction& direction)
 {
     _panDirection = direction;
+    _panClock.restart();
 }
 
 void World::updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
