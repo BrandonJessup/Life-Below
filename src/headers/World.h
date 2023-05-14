@@ -15,13 +15,14 @@ class World
         void stopPanning();
         bool isPanning();
         void updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
+        void updatePanDirection(const sf::Vector2u& windowSize, const sf::Vector2i& mousePosition);
         void resetView();
 
     private:
         void initializeView();
         void loadTempSprite(); // TEMP
 
-        void determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition);
+        void determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Vector2i& mousePosition);
         void panView();
         void drawMap(sf::RenderWindow& window);
         void drawEntities(sf::RenderWindow& window);

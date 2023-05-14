@@ -45,6 +45,11 @@ bool World::isPanning()
 
 void World::updatePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
 {
+    updatePanDirection(windowSize, sf::Vector2i(mousePosition.x, mousePosition.y));
+}
+
+void World::updatePanDirection(const sf::Vector2u& windowSize, const sf::Vector2i& mousePosition)
+{
     Direction oldHorizontal = _panDirectionHorizontal;
     Direction oldVertical = _panDirectionVertical;
     determineEdgePanDirection(windowSize, mousePosition);
@@ -83,7 +88,7 @@ void World::loadTempSprite()
     _tempSprite.setPosition((global::WINDOW_NATIVE_RESOLUTION_X - _tempTexture.getSize().x) / 2, (global::WINDOW_NATIVE_RESOLUTION_Y - _tempTexture.getSize().y) / 2);
 }
 
-void World::determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Event::MouseMoveEvent& mousePosition)
+void World::determineEdgePanDirection(const sf::Vector2u& windowSize, const sf::Vector2i& mousePosition)
 {   
     if (mousePosition.y < global::EDGE_PAN_REGION_THICKNESS)
     {
