@@ -2,3 +2,4 @@
 *.exe
 .vscode/
 scratchpad.md
+*_old.*
