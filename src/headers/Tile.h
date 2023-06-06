@@ -20,8 +20,8 @@ class Tile
 
         Tile();
 
-        Type _type;
-        Visual _visual;
+        Type type;
+        Visual visual;
 };
 
 #endif // TILE_H

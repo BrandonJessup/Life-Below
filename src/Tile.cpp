@@ -2,6 +2,6 @@
 
 Tile::Tile()
 {
-    _type = Type::INVALID;
-    _visual = Visual::INVALID;
+    type = Type::INVALID;
+    visual = Visual::INVALID;
 }
