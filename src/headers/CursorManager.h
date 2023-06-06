@@ -1,5 +1,5 @@
-#ifndef CURSORMANAGER_H
-#define CURSORMANAGER_H
+#ifndef CURSOR_MANAGER_H
+#define CURSOR_MANAGER_H
 
 #include <SFML/Graphics.hpp>
 
@@ -23,4 +23,4 @@ class CursorManager
         static sf::Cursor _panCursors[9];
 };
 
-#endif // CURSORMANAGER_H
+#endif // CURSOR_MANAGER_H

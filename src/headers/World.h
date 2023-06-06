@@ -1,10 +1,10 @@
-#ifndef GAMEWORLD_H
-#define GAMEWORLD_H
+#ifndef WORLD_H
+#define WORLD_H
 
 #include <SFML/Graphics.hpp>
 
 #include "Direction.h"
-#include "Tiles.h"
+#include "Level.h"
 
 class World
 {
@@ -38,10 +38,10 @@ class World
         sf::Clock _panClockVertical;
         bool _keyPanning;
         
-        Tiles _tiles;
+        Level _level;
 
         sf::Texture _tempTexture; // TEMP
         sf::Sprite _tempSprite; // TEMP
 };
 
-#endif // GAMEWORLD_H
+#endif // WORLD_H

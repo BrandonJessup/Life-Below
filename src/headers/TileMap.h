@@ -1,9 +1,9 @@
-#ifndef TILEMAP_H
-#define TILEMAP_H
+#ifndef TILE_MAP_H
+#define TILE_MAP_H
 
 class TileMap
 {
     // TODO
 };
 
-#endif // TILEMAP_H
+#endif // TILE_MAP_H

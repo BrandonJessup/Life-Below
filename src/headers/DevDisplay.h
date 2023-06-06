@@ -1,5 +1,5 @@
-#ifndef DEVDISPLAY_H
-#define DEVDISPLAY_H
+#ifndef DEV_DISPLAY_H
+#define DEV_DISPLAY_H
 
 #include <string>
 
@@ -41,4 +41,4 @@ class DevDisplay
         sf::Color _textColor;
 };
 
-#endif // DEVDISPLAY_H
+#endif // DEV_DISPLAY_H
