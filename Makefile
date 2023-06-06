@@ -1,7 +1,7 @@
 # Replace with location of SFML on your machine.
 SFML = C:/Libraries/C++/SFML-2.5.1
 
-OBJECTS = LifeBelow.o Game.o Window.o World.o DevDisplay.o CursorManager.o TileMap.o Tiles.o
+OBJECTS = LifeBelow.o Game.o Window.o World.o DevDisplay.o CursorManager.o Tile.o
 
 PROGRAM_NAME = "Life Below.exe"
 
@@ -42,11 +42,8 @@ DevDisplay.o : src/headers/DevDisplay.h src/DevDisplay.cpp src/headers/Global.h
 CursorManager.o : src/headers/CursorManager.h src/CursorManager.cpp src/headers/Direction.h
 	g++ -c -DSFML_STATIC $(INCLUDE) src/CursorManager.cpp
 
-TileMap.o : src/headers/TileMap.h src/TileMap.cpp
-	g++ -c -DSFML_STATIC $(INCLUDE) src/TileMap.cpp
-
-Tiles.o : src/headers/Tiles.h src/Tiles.cpp src/headers/TileMap.h
-	g++ -c -DSFML_STATIC $(INCLUDE) src/Tiles.cpp
+Tile.o : src/headers/Tile.h src/Tile.cpp
+	g++ -c -DSFML_STATIC $(INCLUDE) src/Tile.cpp
 
 clean :
 	del $(PROGRAM_NAME) $(OBJECTS)
