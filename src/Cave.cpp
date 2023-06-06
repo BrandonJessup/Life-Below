@@ -1,3 +1,11 @@
 #include "headers/Cave.h"
 
-// TODO
+Cave::Cave()
+{
+    // TODO
+}
+
+void draw(sf::RenderWindow& window)
+{
+    // TODO
+}
