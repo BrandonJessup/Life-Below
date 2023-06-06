@@ -11,6 +11,7 @@ class Tile
             FLOOR
         };
 
+        // Each entry corresponds to an index in the TileMap's texture sheet.
         enum Visual
         {
             INVALID = 0
