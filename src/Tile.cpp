@@ -1,3 +1,7 @@
 #include "headers/Tile.h"
 
-// TODO
+Tile::Tile()
+{
+    _type = Type::INVALID;
+    _visual = Visual::INVALID;
+}
