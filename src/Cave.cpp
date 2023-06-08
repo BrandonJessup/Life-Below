@@ -5,7 +5,7 @@ Cave::Cave()
     // TODO
 }
 
-void draw(sf::RenderWindow& window)
+void Cave::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    // TODO
+    target.draw(_tileMap);
 }

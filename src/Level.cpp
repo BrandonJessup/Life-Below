@@ -1,3 +1,6 @@
 #include "headers/Level.h"
 
-// TODO
+void Level::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(_cave);
+}

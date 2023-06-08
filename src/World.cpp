@@ -245,7 +245,7 @@ void World::panView()
 
 void World::drawMap(sf::RenderWindow& window)
 {
-    window.draw(_tiles);
+    window.draw(_level);
 }
 
 void World::drawEntities(sf::RenderWindow& window)

@@ -7,9 +7,11 @@ TileMap::TileMap()
     // TODO
 }
 
-void TileMap::draw(sf::RenderWindow& window)
+void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    // TODO
+    states.transform *= getTransform();
+    states.texture = &_textureSheet;
+    target.draw(_vertices, states);
 }
 
 bool TileMap::loadTextureSheet(const std::string& filename, const int& columns, const int& total)

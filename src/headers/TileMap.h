@@ -8,10 +8,11 @@
 /*
     Cave as it will be drawn to screen.
 */
+class TileMap : public sf::Drawable, public sf::Transformable
 {
     public:
         TileMap();
-        void draw(sf::RenderWindow& window);
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     private:
         bool loadTextureSheet(const std::string& filename, const int& columns, const int& total);
