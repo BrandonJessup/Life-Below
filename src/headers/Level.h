@@ -3,7 +3,9 @@
 
 #include "Cave.h"
 
-class Level
+/*
+    Generates layout of cave.
+*/
 {
     public:
         // TODO

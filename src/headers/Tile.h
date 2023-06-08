@@ -1,6 +1,9 @@
 #ifndef TILE_H
 #define TILE_H
 
+/*
+    Current state of a cave tile. Create 2-dimensional array of tiles to store state of entire cave.
+*/
 class Tile
 {
     public:

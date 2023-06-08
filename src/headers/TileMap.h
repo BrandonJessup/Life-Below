@@ -5,7 +5,9 @@
 
 #include <SFML/Graphics.hpp>
 
-class TileMap
+/*
+    Cave as it will be drawn to screen.
+*/
 {
     public:
         TileMap();

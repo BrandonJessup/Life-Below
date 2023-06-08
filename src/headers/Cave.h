@@ -8,7 +8,9 @@
 #include "Tile.h"
 #include "TileMap.h"
 
-class Cave
+/*
+    Layout of cave, and interface to alter it.
+*/
 {
     public:
         Cave();
