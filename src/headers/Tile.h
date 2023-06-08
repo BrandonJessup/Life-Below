@@ -39,7 +39,7 @@ class Tile
             WALL_FFWWWFWF, // 3,1
             WALL_WWWFFFWF, // 4,1
             WALL_WFFFWWWF, // 5,1
-            WALL_FFWWWFWF, // 6,1
+            WALL_FFWWWFWF_DUPE, // 6,1
             WALL_WFFFWFFF, // 7,1
             WALL_WFWWWFFF, // 0,2
             WALL_WFWFFFWW, // 1,2
@@ -50,7 +50,7 @@ class Tile
             WALL_WFFFFFWW, // 6,2
             WALL_FFWWWFFF, // 7,2
             WALL_FFWFFFWF, // 0,3
-            WALL_WFFFFFWW, // 1,3
+            WALL_WFFFFFWW_DUPE, // 1,3
             WALL_WWWFFFFF, // 2,3
             WALL_WFWWWFWW, // 3,3
             WALL_WFWWWWWF, // 4,3
