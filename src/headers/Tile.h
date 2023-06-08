@@ -7,9 +7,9 @@
 class Tile
 {
     public:
-        enum Type
+        enum class Type
         {
-            INVALID = 0,
+            INVALID,
             WALL,
             FLOOR
         };
